@@ -31,7 +31,10 @@
 
 ## Решение
 
-Файл .gitlab-ci.yml доступен по ссылке (ссылка на скриншот 2)
+В исходном ci файле был добавлен пункт с соданием artifact с готовым image
+
+Файл .gitlab-ci.yml доступен по ссылке https://github.com/mhfhfmn/GitLab/blob/main/.gitlab-ci.yml
+
 Содержимое файла:
 
 ```
