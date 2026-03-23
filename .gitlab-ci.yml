@@ -1,0 +1,29 @@
+stages:
+  - test
+  - build
+
+variables:
+  DOCKER_TLS_CERTDIR: ""
+  DOCKER_HOST: "unix:///var/run/docker.sock"
+  DOCKER_API_VERSION: "1.41"
+#
+test:
+  stage: test
+  image: golang:1.17
+  script: 
+   - go test .
+  tags:
+   - docker-runner
+
+build:
+  stage: build
+  image: docker:latest
+  script:
+   - docker build -t myapp:latest .
+   - docker save myapp:latest -o myapp-image.tar
+  artifacts:
+   name: "docker-image-$CI_COMMIT_SHORT_SHA"
+   paths:
+    - myapp-image.tar
+  tags:
+   - docker-runner
